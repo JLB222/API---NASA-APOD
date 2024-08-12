@@ -1,1 +1,3 @@
 nasaConfig.js
+node_modules/
+.env

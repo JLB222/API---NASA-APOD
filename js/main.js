@@ -1,59 +1,12 @@
 //Example fetch using pokemonapi.co
 document.querySelector('button').addEventListener('click', fetchAPOD)
 
-
-
-// function getFetch(){
-//   // const choice = document.querySelector('input').value.toLowerCase()
-//   let yearMonthDay = document.querySelector('input').value
-//   const url = `https://api.nasa.gov/planetary/apod?api_key=z2kfsEPYn6PkZwX5y09RcFyIKoFp7YRzdLCr3afV&date=${yearMonthDay}`
-
-//   fetch(url)
-//       .then(res => res.json()) // parse response as JSON
-//       .then(data => {
-//         console.log(data)
-//         // Function to create the element
-//         function createElement(type) {
-//           let element;
-//           if (type === 'iframe') {
-//             element = document.createElement('iframe');
-//             element.src = data.url
-//             element.width = '1024';
-//             element.height = '676';
-//           } else if (type === 'img') {
-//             element = document.createElement('img');
-//             element.src = data.hdurl
-//             element.alt = 'Example Image';
-//             element.width = '1024';
-//             element.height = '676';
-//           } else {
-//             console.error('Unknown element type:', type);
-//             return;
-//           }
-//         // Append the created element to the body (or any other container)
-//         document.getElementById("content-container").appendChild(element);
-//         }
-
-//         const elementType = data.media_type === "image" ? 'img' : 'iframe'
-//         // Call the function to create the element
-//         createElement(elementType);
-
-//         document.querySelector('h3').innerText = data.explanation
-
-        
-//       })
-//       .catch(err => {
-//           console.log(`error ${err}`)
-//       });
-// }
-import nasaConfig from './nasaConfig.js';
-
-
+// import nasaConfig from './nasaConfig.js';
 
 async function fetchAPOD() {
-  const apiKey = nasaConfig.apiKey;
+//   const apiKey = nasaConfig.apiKey;
   const yearMonthDay = document.querySelector('input').value
-  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${yearMonthDay}`;
+  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key={apiKeyHere}&date=${yearMonthDay}`;
 
   try {
       const response = await fetch(apiUrl);
@@ -86,9 +39,19 @@ async function fetchAPOD() {
       newDiv.appendChild(date)
       newDiv.appendChild(description);
       newDiv.appendChild(mediaElement);
-      apodContainer.appendChild(newDiv);
+    //   apodContainer.appendChild(newDiv);
+      // Insert the new element at the top of the container
+        if (apodContainer.firstChild) {
+            apodContainer.insertBefore(newDiv, apodContainer.firstChild);
+        } else {
+            apodContainer.appendChild(newDiv); // If container is empty, just append it
+        }
 
   } catch (error) {
       console.error('Error fetching NASA APOD:', error);
   }
 }
+
+
+//To Do
+//Can we make it so that every time a user clicks the button, the new image/description are ABOVE the old one?  That way users don't have to scroll up & down just to keep searching more photos.
