@@ -6,7 +6,7 @@ document.querySelector('button').addEventListener('click', fetchAPOD)
 async function fetchAPOD() {
 //   const apiKey = nasaConfig.apiKey;
   const yearMonthDay = document.querySelector('input').value
-  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key={apiKeyHere}&date=${yearMonthDay}`;
+  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=z2kfsEPYn6PkZwX5y09RcFyIKoFp7YRzdLCr3afV&date=${yearMonthDay}`;
 
   try {
       const response = await fetch(apiUrl);
@@ -51,7 +51,3 @@ async function fetchAPOD() {
       console.error('Error fetching NASA APOD:', error);
   }
 }
-
-
-//To Do
-//Can we make it so that every time a user clicks the button, the new image/description are ABOVE the old one?  That way users don't have to scroll up & down just to keep searching more photos.
