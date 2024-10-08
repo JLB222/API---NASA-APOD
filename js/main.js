@@ -1,10 +1,6 @@
-//Example fetch using pokemonapi.co
 document.querySelector('button').addEventListener('click', fetchAPOD)
 
-// import nasaConfig from './nasaConfig.js';
-
 async function fetchAPOD() {
-//   const apiKey = nasaConfig.apiKey;
   const yearMonthDay = document.querySelector('input').value
   const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=z2kfsEPYn6PkZwX5y09RcFyIKoFp7YRzdLCr3afV&date=${yearMonthDay}`;
 
@@ -39,7 +35,6 @@ async function fetchAPOD() {
       newDiv.appendChild(date)
       newDiv.appendChild(description);
       newDiv.appendChild(mediaElement);
-    //   apodContainer.appendChild(newDiv);
       // Insert the new element at the top of the container
         if (apodContainer.firstChild) {
             apodContainer.insertBefore(newDiv, apodContainer.firstChild);
